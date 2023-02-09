@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.dimasnoufal.tugasweek2idn.databinding.RowItemGamesBinding
 
 class DetailAdapter(val listGames: ArrayList<Games>) : RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
-    inner class DetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var ivPoster: ImageView = itemView.findViewById(R.id.iv_poster)
+    inner class DetailViewHolder(var binding: RowItemGamesBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.row_item_games, parent, false)
-        return DetailViewHolder(view)
+        val binding = RowItemGamesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DetailViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -22,6 +22,6 @@ class DetailAdapter(val listGames: ArrayList<Games>) : RecyclerView.Adapter<Deta
     }
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
-        holder.ivPoster.setImageResource(listGames[position].poster)
+        holder.binding.ivPoster.setImageResource(listGames[position].poster)
     }
 }
